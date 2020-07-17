@@ -1,9 +1,6 @@
 # blog
 
-## 说点什么
-
-利用下班时间使用nuxt开发的仿hexo博客系统
-
+使用nuxt开发的仿hexo博客系统
 
 ## Build Setup
 
