@@ -8,16 +8,35 @@
       </div>
       <Wave></Wave>
     </div>
-    <div class="content"></div>
+    <div class="content">
+      <div class="content-top">
+        <Divider icon="icon-anchor">START:DASH!!</Divider>
+        <div class="card-wrap">
+          <Card title="这里是标题" content="乌拉~">
+            <img src="../assets/img/banner.png" />
+          </Card>
+          <Card></Card>
+          <Card></Card>
+        </div>
+        <Divider>START:!!</Divider>
+        <Card title="这里是标题" type="max" content="乌拉~">
+          <img src="../assets/img/banner.png" />
+        </Card>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Wave from '@/components/Wave';
+import Divider from '@/components/Divider';
+import Card from '@/components/Card';
 
 export default {
   components: {
     Wave,
+    Divider,
+    Card,
   },
 };
 </script>
@@ -63,7 +82,23 @@ export default {
     }
   }
   .content {
-    height: 1000px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 0px 10px;
+    .content-top {
+      width: 100%;
+      margin-top: 100px;
+      .card-wrap {
+        display: flex;
+        justify-content: space-between;
+        .l-card {
+          flex: 1;
+          padding: 0 8px 0 8px;
+        }
+      }
+    }
   }
 }
 
