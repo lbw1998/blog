@@ -18,9 +18,30 @@
           <Card></Card>
           <Card></Card>
         </div>
+      </div>
+      <div class="content-main">
         <Divider>START:!!</Divider>
-        <Card title="这里是标题" type="max" content="乌拉~">
+        <Card title="这里是标题" type="max" direction="row" content="乌拉~">
           <img src="../assets/img/banner.png" />
+          <template slot="content">
+            <div class="post-date">
+              <i class="iconfont icon-time"></i>发布于 2020-07-17
+            </div>
+            <h3>测试</h3>
+            <div class="post-meta">
+              <span><i class="iconfont icon-attention"></i>26 热度</span>
+              <span class="comments-number">
+                <i class="iconfont icon-mark"></i>0 评论
+              </span>
+              <span> <i class="iconfont icon-file"></i>demo </span>
+            </div>
+            <div class="content-main">
+              啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+              啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊啊
+              啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊啊
+              啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊啊
+            </div>
+          </template>
         </Card>
       </div>
     </div>
@@ -96,6 +117,44 @@ export default {
         .l-card {
           flex: 1;
           padding: 0 8px 0 8px;
+        }
+      }
+    }
+    .content-main {
+      .l-card {
+        .post-date {
+          color: #000000a6;
+          i {
+            margin-right: 5px;
+            color: rgb(152, 152, 152);
+            font-size: 14px;
+          }
+        }
+        h3 {
+          margin: 18px 0;
+          font-weight: bold;
+        }
+        .post-meta {
+          color: rgb(136, 136, 136);
+          font-size: 14px;
+          i {
+            margin-right: 5px;
+            color: rgb(152, 152, 152);
+            font-size: 14px;
+          }
+        }
+        .float-content {
+          height: 90px;
+          font-size: 15px;
+          color: rgba(0, 0, 0, 0.66);
+          line-height: 23px;
+          overflow: hidden;
+          margin: 16px 0px 22px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
         }
       }
     }

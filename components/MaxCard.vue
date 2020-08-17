@@ -1,15 +1,23 @@
 <template>
-  <div class="max-card">
-    <div class="post-img">
+  <div class="max-card" :class="direction">
+    <div class="l-card_img">
       <slot></slot>
     </div>
-    <div class="post-content"></div>
+    <div class="l-card_content" :class="direction">
+      <slot name="content"></slot>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'MaxCard',
+  props: {
+    direction: {
+      type: String,
+      default: 'row',
+    },
+  },
 };
 </script>
 
@@ -29,14 +37,15 @@ export default {
   box-sizing: border-box;
   &:hover {
     box-shadow: rgba(110, 110, 110, 0.4) 0px 5px 10px 5px;
-    .post-img {
+    .l-card_img {
       img {
         transform: scale(1.1);
       }
     }
   }
-  .post-img {
-    width: 55%;
+  .l-card_img {
+    max-width: 462px;
+    box-sizing: border-box;
     height: 100%;
     overflow: hidden;
 
@@ -47,9 +56,23 @@ export default {
       transition: all 0.6s ease 0s;
     }
   }
-  .post-content {
-    width: 45%;
-    height: 100%;
+  .l-card_content {
+    min-width: 438px;
+    box-sizing: border-box;
+    padding: 30px;
   }
+  .row {
+    text-align: right;
+  }
+  .reverse {
+    text-align: left;
+  }
+}
+
+.row {
+  flex-direction: row;
+}
+.reverse {
+  flex-direction: row-reverse;
 }
 </style>

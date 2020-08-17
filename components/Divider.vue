@@ -13,7 +13,7 @@ export default {
   props: {
     icon: {
       type: String,
-      default: 'icon-anchor',
+      default: 'icon-envira',
     },
   },
 };

@@ -3,8 +3,16 @@
     <MinCard v-if="type === 'min'" :title="title" :content="content">
       <slot></slot>
     </MinCard>
-    <MaxCard v-else-if="type === 'max'" :title="title" :content="content">
+    <MaxCard
+      v-else-if="type === 'max'"
+      :title="title"
+      :direction="direction"
+      :content="content"
+    >
       <slot></slot>
+      <template slot="content">
+        <slot name="content"></slot>
+      </template>
     </MaxCard>
   </div>
 </template>
@@ -31,6 +39,10 @@ export default {
     type: {
       type: String,
       default: 'min',
+    },
+    direction: {
+      type: String,
+      default: 'row',
     },
   },
 };
