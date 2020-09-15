@@ -10,7 +10,6 @@
 
 <script>
 export default {
-  name: 'DropDown',
   data() {
     return {
       flag: false,

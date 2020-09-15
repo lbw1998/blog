@@ -11,7 +11,6 @@
 
 <script>
 export default {
-  name: 'MaxCard',
   props: {
     direction: {
       type: String,

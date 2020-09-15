@@ -39,7 +39,7 @@
               啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
               啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊啊
               啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊啊
-              啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊啊
+              啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊啊
             </div>
           </template>
         </Card>
@@ -54,6 +54,7 @@ import Divider from '@/components/Divider';
 import Card from '@/components/Card';
 
 export default {
+  name: 'Home',
   components: {
     Wave,
     Divider,

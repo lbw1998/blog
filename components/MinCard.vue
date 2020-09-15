@@ -16,7 +16,6 @@
 
 <script>
 export default {
-  name: 'MinCard',
   props: {
     title: {
       type: String,

@@ -22,7 +22,6 @@ import MinCard from './MinCard';
 import MaxCard from './MaxCard';
 
 export default {
-  name: 'Card',
   components: {
     MinCard,
     MaxCard,
