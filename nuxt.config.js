@@ -29,10 +29,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [
-    '~assets/css/iconfont.css',
-    '~assets/css/common.css',
-  ],
+  css: ['~assets/css/iconfont.css', '~assets/css/common.css'],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
@@ -69,4 +66,4 @@ export default {
   build: {
     transpile: [],
   },
-}
+};

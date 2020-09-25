@@ -132,3 +132,75 @@ a:focus,*:focus {
 .fr {
   float:right;
 }
+
+@keyframes main {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+}
+/* 水波效果 */
+@keyframes move_wave {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-25%) translateY(15px);
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes post-list-show {
+  0% {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes elastic {
+  0% {
+      transform: scale(0);
+  }
+  55% {
+      transform: scale(1);
+  }
+  70% {
+      transform: scale(0.98);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+

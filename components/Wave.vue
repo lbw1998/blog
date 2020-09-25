@@ -55,19 +55,4 @@
     }
   }
 }
-
-// 动画特效
-@keyframes move_wave {
-  0% {
-    transform: translateX(0) translateY(0);
-  }
-
-  50% {
-    transform: translateX(-25%) translateY(15px);
-  }
-
-  100% {
-    transform: translateX(-50%) translateY(0);
-  }
-}
 </style>

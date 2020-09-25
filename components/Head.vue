@@ -27,12 +27,17 @@
         <i class="iconfont icon-user" style="font-size: 26px;"></i>
       </div>
     </div>
-    <div v-if="isShow" class="search-wrap">
+    <div :class="{ is_visible: isShow }" class="search-wrap">
       <div class="search-inner">
         <div class="box">
           <p>想要找点什么呢？</p>
           <i class="iconfont icon-search"></i>
-          <input type="search" placeholder="Search" />
+          <input
+            v-model="search"
+            type="search"
+            placeholder="Search"
+            @keyup.enter="jumpTo('search-id', search)"
+          />
         </div>
       </div>
       <i class="iconfont icon-close" @click="isShow = false"></i>
@@ -41,18 +46,16 @@
 </template>
 
 <script>
-import Dropdown from './Dropdown';
+import utils from '@/assets/mixins/utils.js';
 
 export default {
-  components: {
-    Dropdown,
-  },
+  mixins: [utils],
   data() {
     return {
       scrollTop: false,
       isShow: false,
+      search: '',
       title: 'logo',
-      searchShow: false,
       menuList: [
         {
           icon: 'icon-fort-awesome',
@@ -159,12 +162,17 @@ export default {
     }
   }
   .search-wrap {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    transition: visibility 0.25s ease 0s, opacity 0.25s ease 0s;
+    overflow: hidden;
+    z-index: 999;
     position: fixed;
-    background: #ffffff;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    background: rgb(255, 255, 255);
+    visibility: hidden;
+    opacity: 0;
     .search-inner {
       max-width: 640px;
       text-align: left;
@@ -216,6 +224,14 @@ export default {
       cursor: pointer;
       font-size: 30px;
     }
+  }
+  .is_visible {
+    visibility: visible;
+    opacity: 0.99;
+    animation: 0.5s ease 0s 1 normal none running elastic;
+    background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.2.1/img/other/iloli.gif);
+    background-repeat: no-repeat;
+    background-position: right bottom;
   }
 }
 .show {
