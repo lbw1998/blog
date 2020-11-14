@@ -29,12 +29,16 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['~assets/css/iconfont.css', '~assets/css/common.css'],
+  css: [
+    '~assets/css/iconfont.css',
+    '~assets/css/common.css',
+    'element-ui/lib/theme-chalk/index.css',
+  ],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: ['@/plugins/element-ui', '@/plugins/axios'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -53,6 +57,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
   ],
   /*
    ** Axios module configuration
@@ -65,5 +70,14 @@ export default {
    */
   build: {
     transpile: [],
+  },
+  proxy: {
+    '/api/': {
+      target: 'http://localhost:7001',
+      secure: false,
+      pathRewrite: {
+        '^/api': '',
+      },
+    },
   },
 };
