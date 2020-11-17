@@ -14,10 +14,15 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.11.0",
     "element-ui": "^2.14.1",
+    "github-markdown-css": "^4.0.0",
+    "highlight.js": "^10.3.2",
     "js-cookie": "^2.2.1",
+    "marked": "^1.2.4",
     "mavon-editor": "^2.9.0",
     "md5": "^2.3.0",
-    "nuxt": "^2.13.0"
+    "nuxt": "^2.13.0",
+    "vue-code-highlight": "^0.7.6",
+    "xss": "^1.0.8"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.0.0",

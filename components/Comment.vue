@@ -3,7 +3,16 @@
     <MinComment v-if="type === 'min'" :url="url">
       <slot></slot>
     </MinComment>
-    <MaxComment v-else :title="title" :direction="direction" :content="content">
+    <MaxComment
+      v-else
+      :title="title"
+      :category="category"
+      :comments="comments"
+      :time="time"
+      :views="views"
+      :direction="direction"
+      :content="content"
+    >
       <slot></slot>
       <template slot="content">
         <slot name="content"></slot>
@@ -25,6 +34,22 @@ export default {
     title: {
       type: String,
       default: '标题',
+    },
+    category: {
+      type: String,
+      default: '类别',
+    },
+    views: {
+      type: Number,
+      default: 0,
+    },
+    comments: {
+      type: Number,
+      default: 0,
+    },
+    time: {
+      type: String,
+      default: '2020-07-17',
     },
     content: {
       type: String,

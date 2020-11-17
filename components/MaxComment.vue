@@ -1,25 +1,22 @@
 <template>
   <article class="max-comment" :class="direction">
     <div class="l-comment_img">
-      <slot></slot>
+      <img :src="imgUrl" />
     </div>
     <div class="l-comment_content" :class="direction">
       <div class="post-date">
-        <i class="iconfont icon-time"></i>发布于 2020-07-17
+        <i class="iconfont icon-time"></i>发布于 {{ time }}
       </div>
-      <h3>测试</h3>
+      <h3>{{ title }}</h3>
       <div class="post-meta">
-        <span><i class="iconfont icon-attention"></i>26 热度</span>
+        <span><i class="iconfont icon-attention"></i>{{ views }} 热度</span>
         <span class="comments-number">
-          <i class="iconfont icon-mark"></i>0 评论
+          <i class="iconfont icon-mark"></i>{{ comments }} 评论
         </span>
-        <span> <i class="iconfont icon-file"></i>demo </span>
+        <span> <i class="iconfont icon-file"></i>{{ category }} </span>
       </div>
       <div class="content-main">
-        啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-        啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊啊
-        啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊啊 啊啊啊啊
-        啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊 啊啊啊啊啊啊啊啊啊啊啊啊
+        {{ content }}
       </div>
     </div>
   </article>
@@ -28,6 +25,38 @@
 <script>
 export default {
   props: {
+    title: {
+      type: String,
+      default: '标题',
+    },
+    category: {
+      type: String,
+      default: '类别',
+    },
+    views: {
+      type: Number,
+      default: 0,
+    },
+    comments: {
+      type: Number,
+      default: 0,
+    },
+    time: {
+      type: String,
+      default: '2020-07-17',
+    },
+    content: {
+      type: String,
+      default: '内容',
+    },
+    type: {
+      type: String,
+      default: 'min',
+    },
+    imgUrl: {
+      type: String,
+      default: '',
+    },
     direction: {
       type: String,
       default: 'row',
@@ -59,7 +88,7 @@ export default {
     }
   }
   .l-comment_img {
-    max-width: 462px;
+    width: 462px;
     box-sizing: border-box;
     height: 100%;
     overflow: hidden;
@@ -72,7 +101,7 @@ export default {
     }
   }
   .l-comment_content {
-    min-width: 438px;
+    width: 438px;
     box-sizing: border-box;
     padding: 30px;
     .post-date {

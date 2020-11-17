@@ -11,16 +11,13 @@
       <h1 class="entry-title">{{ title }}</h1>
       <p class="entry-census">
         <span>
-          <img
-            src="http://preview.plumemo.com/api/blog/files/01608852-c436-4ad6-a367-a2e6d541ddfa.png"
-            alt=""
-          />
+          <img :src="avatar" alt="" />
         </span>
-        <span>preview_plumemo@163.com</span>
+        <span>{{ author }}</span>
         <span class="bull">·</span>
-        <span>2020-07-17 </span>
+        <span>{{ time }} </span>
         <span class="bull">·</span>
-        <span>89 次阅读</span>
+        <span>{{ views }} 次阅读</span>
       </p>
     </div>
   </div>
@@ -33,9 +30,25 @@ export default {
       type: String,
       default: '',
     },
+    avatar: {
+      type: String,
+      default: '',
+    },
+    author: {
+      type: String,
+      default: '',
+    },
+    time: {
+      type: String,
+      default: '',
+    },
+    views: {
+      type: Number,
+      default: 0,
+    },
     url: {
       type: String,
-      default: null,
+      default: '',
     },
     circle: {
       type: Boolean,

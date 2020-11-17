@@ -45,7 +45,6 @@ import md5 from 'md5';
 import Cookie from 'js-cookie';
 
 export default {
-  layout: 'login',
   name: 'Login',
   data() {
     return {
@@ -54,7 +53,16 @@ export default {
         password: '',
         rememberMe: false,
       },
+      loading: false,
+      redirect: undefined,
     };
+  },
+  watch: {
+    $route: {
+      handler(route) {
+        this.redirect = route.query && route.query.redirect;
+      },
+    },
   },
   created() {
     this.getCookie();
@@ -64,16 +72,20 @@ export default {
       const username = Cookie.get('username');
       const password = Cookie.get('password');
       const rememberMe = Cookie.get('rememberMe');
-      this.loginForm = {
+      this.form = {
         username: username === undefined ? this.form.username : username,
         password: password === undefined ? md5(this.form.password) : password,
         rememberMe: rememberMe === undefined ? false : Boolean(rememberMe),
       };
+      if (username && password) {
+        this.login();
+      }
     },
     login() {
+      this.loading = true;
       const params = {
         username: this.form.username,
-        password: this.form.password,
+        password: md5(this.form.password),
       };
       if (this.form.rememberMe) {
         Cookie.set('username', this.form.username, { expires: 30 });
@@ -84,7 +96,21 @@ export default {
         Cookie.remove('password');
         Cookie.remove('rememberMe');
       }
-      this.$store.dispatch('user/login', params);
+      this.$store
+        .dispatch('user/login', params)
+        .then((res) => {
+          if (res.code === 0) {
+            this.$notify({
+              title: res.data.nickname,
+              message: '欢迎您',
+              type: 'success',
+            });
+          }
+          this.$router.push(this.redirect || '/admin');
+        })
+        .catch(() => {
+          this.loading = false;
+        });
     },
   },
 };

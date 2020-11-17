@@ -1,9 +1,9 @@
 <template>
   <div class="category_wrap">
+    <TopImg :url="imgPath" :title="title"> </TopImg>
     <div class="category_content">
-      <div class="center-blank"></div>
       <header class="content_header">
-        <h1>搜索结果：{{ search }}</h1>
+        <h1>分类 “{{ title }}” 下的文章</h1>
       </header>
       <div class="article_wrap">
         <MinComment
@@ -26,15 +26,16 @@
 </template>
 
 <script>
-import { ARTICLE_API } from '@/utils/api';
+import { TYPE_API } from '@/utils/api';
 import { parseTime } from '@/utils/tool';
 
 export default {
   layout: 'blog',
   data() {
     return {
-      search: '',
-      artilceList: '',
+      imgPath: require('../../assets/img/banner.png'),
+      title: '',
+      artilceList: [],
     };
   },
   created() {
@@ -50,11 +51,11 @@ export default {
       });
     },
     async getList() {
-      this.search = this.$route.params.id;
+      this.title = this.$route.params.name;
       const params = {
-        search: this.search,
+        typeName: this.title,
       };
-      const res = await ARTICLE_API.getArticles(params);
+      const res = await TYPE_API.getArticles(params);
       res.data.map((item) => {
         item.createdAt = parseTime(item.createdAt);
         item.comments = item.comments.length;
@@ -75,10 +76,6 @@ export default {
     margin-right: auto;
     background-color: rgba(255, 255, 255, 0.8);
     animation: 1s ease 0s 1 normal none running main;
-    .center-blank {
-      padding-top: 75px;
-      background-color: rgb(255, 255, 255);
-    }
     .content_header {
       position: relative;
       text-align: center;

@@ -1,15 +1,24 @@
 <template>
   <div class="drop-down" @mouseenter="show" @mouseleave="flag = false">
-    <slot></slot>
+    <li>
+      <span class="menu-item"></span>
+      <i class="iconfont icon-list-ul"> </i>
+      {{ title }}
+    </li>
     <ul v-show="flag" class="drop-menu">
-      <li>123333</li>
-      <li>2</li>
+      <slot></slot>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    title: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
       flag: false,

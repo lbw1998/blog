@@ -4,4 +4,31 @@ const USER_API = {
   login: (params) => $http('POST', '/user/login', 0, params),
 };
 
-export { USER_API };
+const TYPE_API = {
+  // 无需token
+  getTypes: (params) => $http('GET', '/type/list', 0, params),
+  getArticles: (params) => $http('GET', '/type/articles', 0, params),
+  // 需token
+  addType: (params) => $http('POST', '/types', 0, params),
+  delType: (params) => $http('DELETE', '/types/' + params.id, 0, params),
+  updateType: (params) => $http('PUT', '/types/' + params.id, 0, params),
+  getList: (params) => $http('GET', '/types', 0, params),
+};
+
+const FILE_API = {
+  addFile: (params) => $http('POST', '/files', 2, params),
+  delFile: (params) => $http('DELETE', '/files/' + params.name, 0, params),
+};
+
+const ARTICLE_API = {
+  // 无需token
+  getArticles: (params) => $http('GET', '/article/list', 0, params),
+  // 需token
+  addArticle: (params) => $http('POST', '/articles', 0, params),
+  getList: (params) => $http('GET', '/articles', 0, params),
+  delArticle: (params) => $http('DELETE', '/articles/' + params.id, 0, params),
+  getDetail: (params) => $http('GET', '/articles/' + params.id, 0, params),
+  updateArticle: (params) => $http('PUT', '/articles/' + params.id, 0, params),
+};
+
+export { USER_API, TYPE_API, FILE_API, ARTICLE_API };

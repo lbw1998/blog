@@ -1,19 +1,16 @@
 <template>
-  <div>
-    <Head></Head>
+  <div class="default-wrap">
     <Nuxt />
-    <Foot></Foot>
   </div>
 </template>
 
 <script>
-import Head from '../components/Head.vue';
-import Foot from '../components/Foot.vue';
-
-export default {
-  components: Head,
-  Foot,
-};
+export default {};
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.default-wrap {
+  width: 100wh;
+  height: 100vh;
+}
+</style>

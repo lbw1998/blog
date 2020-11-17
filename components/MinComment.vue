@@ -2,26 +2,25 @@
   <article class="min-comment">
     <div class="comment-wrap">
       <div class="comment-avatar">
-        <img v-if="url" :src="url" />
-        <slot v-else></slot>
+        <img v-if="imgUrl" :src="imgUrl" />
       </div>
       <h1 class="comment-title">
-        我曾初始这世间
+        {{ title }}
       </h1>
       <div class="comment-time">
         <i class="iconfont icon-time"></i>
-        发布于 2020-07-7
+        发布于 {{ time }}
       </div>
       <p class="comment-content">
-        乌拉乌拉乌拉~~~
+        {{ content }}
       </p>
       <div class="comment-tip">
         <div class="comnum">
-          <span> <i class="iconfont icon-attention"></i>214 热度 </span>
+          <span> <i class="iconfont icon-attention"></i>{{ views }} 热度 </span>
         </div>
         <div class="views">
           <span class="comments-number">
-            <i class="iconfont icon-mark"></i>6 评论
+            <i class="iconfont icon-mark"></i>{{ comments }} 评论
           </span>
         </div>
       </div>
@@ -37,9 +36,29 @@ export default {
       type: String,
       default: '标题',
     },
-    url: {
+    category: {
       type: String,
-      default: null,
+      default: '类别',
+    },
+    views: {
+      type: Number,
+      default: 0,
+    },
+    comments: {
+      type: Number,
+      default: 0,
+    },
+    time: {
+      type: String,
+      default: '2020-07-17',
+    },
+    content: {
+      type: String,
+      default: '内容',
+    },
+    imgUrl: {
+      type: String,
+      default: '',
     },
   },
 };

@@ -9,12 +9,13 @@
             {{ item.label }}
           </span>
         </li>
-        <Dropdown>
-          <li>
-            <span class="menu-item">
-              <i class="iconfont icon-list-ul"></i>
-              分类
-            </span>
+        <Dropdown title="分类">
+          <li
+            v-for="(item, index) in typeList"
+            :key="index"
+            @click="jumpTo('type-id', item.typeName)"
+          >
+            {{ item.typeName }}
           </li>
         </Dropdown>
       </ul>
@@ -46,15 +47,15 @@
 </template>
 
 <script>
-import utils from '@/assets/mixins/utils.js';
+import { TYPE_API } from '@/utils/api';
 
 export default {
-  mixins: [utils],
   data() {
     return {
       scrollTop: false,
       isShow: false,
       search: '',
+      typeList: [],
       title: 'logo',
       menuList: [
         {
@@ -68,8 +69,10 @@ export default {
       ],
     };
   },
-  mounted() {
+  async mounted() {
     window.addEventListener('scroll', this.handleScroll);
+    const res = await TYPE_API.getTypes();
+    this.typeList = res.data;
   },
   methods: {
     handleScroll() {
@@ -78,6 +81,15 @@ export default {
         document.documentElement.scrollTop ||
         document.body.scrollTop;
       this.scrollTop = scrollTop;
+    },
+    jumpTo(name, id) {
+      this.$router.push({
+        name,
+        params: {
+          id,
+        },
+      });
+      this.isShow = false;
     },
   },
 };

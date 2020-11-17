@@ -26,15 +26,21 @@
       </div>
       <div class="content-main">
         <Divider>START:!!</Divider>
-        <Comment
-          title="这里是标题"
-          type="max"
-          direction="row"
-          content="乌拉~"
-          @click.native="jumpTo('article-id', 1)"
+        <!-- eslint-disable vue/attribute-hyphenation  -->
+        <MaxComment
+          v-for="(item, index) in artilceList"
+          :key="index"
+          :title="item.title"
+          :content="item.desc"
+          :category="item.type.typeName"
+          :comments="item.comments"
+          :time="item.createdAt"
+          :views="item.views"
+          :imgUrl="item.imgUrl"
+          :direction="index % 2 === 1 ? 'reverse' : 'row'"
+          @click.native="jumpTo('article-id', item._id)"
         >
-          <img src="../assets/img/banner.png" />
-        </Comment>
+        </MaxComment>
       </div>
       <Empty></Empty>
     </div>
@@ -45,16 +51,54 @@
 // import Wave from '@/components/Wave';
 // import Divider from '@/components/Divider';
 // import Card from '@/components/Card';
-import utils from '@/assets/mixins/utils.js';
+import { ARTICLE_API } from '@/utils/api';
+import { parseTime } from '@/utils/tool';
 
 export default {
   name: 'Home',
+  layout: 'blog',
   components: {
     // Wave,
     // Divider,
     // Card,
   },
-  mixins: [utils],
+  async asyncData(app) {
+    const res = await app.$axios.get('/api/article/list', {
+      params: { pageSize: 999 },
+    });
+    // const res = await ARTICLE_API.getArticles({ pageNum: 1 });
+    // const res = await store.dispatch('init/getData');
+    res.data.data.map((item) => {
+      item.createdAt = parseTime(item.createdAt);
+      item.comments = item.comments.length;
+    });
+    return {
+      artilceList: res.data.data,
+    };
+  },
+  data() {
+    return {
+      pageNum: 1,
+    };
+  },
+  created() {},
+  methods: {
+    jumpTo(route, id) {
+      this.$router.push({
+        route,
+        params: {
+          id,
+        },
+      });
+    },
+    async load() {
+      const res = await ARTICLE_API.getArticles({ pageNum: ++this.pageNum });
+      res.data.map((item) => {
+        item.createdAt = parseTime(item.createdAt);
+      });
+      this.artilceList.push(...res.data);
+    },
+  },
 };
 </script>
 
