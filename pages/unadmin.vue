@@ -23,19 +23,15 @@
         />
       </div>
       <div class="sign-in">
-        <el-checkbox v-model="form.rememberMe" style="margin: 0px 0px 25px 0px;"
+        <el-checkbox v-model="form.rememberMe" style="margin: 0px 0px 25px 0px"
           >记住密码</el-checkbox
         >
         <el-button size="mini" type="primary" @click="login()">登 录</el-button>
       </div>
     </div>
     <div class="copyright">
-      <div class="top">
-        Copyright © 2020 All Right Reserved
-      </div>
-      <div class="bottom">
-        @取暖
-      </div>
+      <div class="top">Copyright © 2020 All Right Reserved</div>
+      <div class="bottom">@取暖</div>
     </div>
   </div>
 </template>
@@ -64,7 +60,7 @@ export default {
       },
     },
   },
-  created() {
+  mounted() {
     this.getCookie();
   },
   methods: {

@@ -38,7 +38,7 @@ export default {
       artilceList: [],
     };
   },
-  created() {
+  mounted() {
     this.getList();
   },
   methods: {

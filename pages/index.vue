@@ -81,11 +81,11 @@ export default {
       pageNum: 1,
     };
   },
-  created() {},
+  mounted() {},
   methods: {
-    jumpTo(route, id) {
+    jumpTo(name, id) {
       this.$router.push({
-        route,
+        name,
         params: {
           id,
         },

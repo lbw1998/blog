@@ -13,7 +13,7 @@
           <li
             v-for="(item, index) in typeList"
             :key="index"
-            @click="jumpTo('type-id', item.typeName)"
+            @click="jumpTo('/type/', item.typeName)"
           >
             {{ item.typeName }}
           </li>
@@ -22,10 +22,10 @@
       <div class="btn-wrap">
         <i
           class="iconfont icon-search"
-          style="font-size: 26px;"
+          style="font-size: 26px"
           @click="isShow = !isShow"
         ></i>
-        <i class="iconfont icon-user" style="font-size: 26px;"></i>
+        <i class="iconfont icon-user" style="font-size: 26px"></i>
       </div>
     </div>
     <div :class="{ is_visible: isShow }" class="search-wrap">
@@ -37,7 +37,7 @@
             v-model="search"
             type="search"
             placeholder="Search"
-            @keyup.enter="jumpTo('search-id', search)"
+            @keyup.enter="jumpTo('/search/', search)"
           />
         </div>
       </div>
@@ -83,12 +83,7 @@ export default {
       this.scrollTop = scrollTop;
     },
     jumpTo(name, id) {
-      this.$router.push({
-        name,
-        params: {
-          id,
-        },
-      });
+      this.$router.push(name + id);
       this.isShow = false;
     },
   },

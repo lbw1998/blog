@@ -4,7 +4,7 @@
       标题：<el-input
         v-model="form.title"
         placeholder="标题"
-        style="width: 300px;"
+        style="width: 300px"
       ></el-input>
       文章分类：
       <el-select v-model="form.type" placeholder="请选择">
@@ -19,7 +19,7 @@
       简述：<el-input
         v-model="form.desc"
         placeholder="简述"
-        style="width: 300px;"
+        style="width: 300px"
       ></el-input>
     </div>
     <div>
@@ -79,7 +79,7 @@ export default {
       flag: 0, // 0 为创建  1 为修改
     };
   },
-  created() {
+  mounted() {
     this.getList();
     this.getData();
   },

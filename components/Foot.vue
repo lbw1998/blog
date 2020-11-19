@@ -5,9 +5,7 @@
         <p class="name">
           <span>Copyright @ Blog</span>
         </p>
-        <p>
-          © 2020 lbw1998 xxxx
-        </p>
+        <p>© 2020 lbw1998 xxxx</p>
       </div>
     </div>
   </footer>

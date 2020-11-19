@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import axios from 'axios';
 import { Message, MessageBox } from 'element-ui';
+import qs from 'qs';
 import { getToken } from '../utils/auth';
 
 const service = axios.create({
@@ -56,6 +57,7 @@ export function $http(method, url, type, params) {
   ];
   const headers = { 'content-type': contentType[type] };
   const axiosOptions = { method, url, headers };
+  if (type === 0) params = qs.stringify(params);
   if (method.toUpperCase() === 'GET') {
     axiosOptions.params = params;
   } else {

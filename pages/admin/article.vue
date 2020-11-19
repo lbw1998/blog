@@ -1,6 +1,6 @@
 <template>
   <div class="type-wrap">
-    <el-table :data="tableData" style="width: 100%;">
+    <el-table :data="tableData" style="width: 100%">
       <el-table-column type="index" label="#"></el-table-column>
       <el-table-column prop="title" label="名称"> </el-table-column>
       <el-table-column prop="type.typeName" label="分类"> </el-table-column>
@@ -36,7 +36,7 @@ export default {
       typeName: '',
     };
   },
-  created() {
+  mounted() {
     this.getTableList();
   },
   methods: {

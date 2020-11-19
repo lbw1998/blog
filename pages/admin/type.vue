@@ -5,11 +5,11 @@
       <el-input
         v-model="typeName"
         placeholder="分类名称"
-        style="width: 300px;"
+        style="width: 300px"
       ></el-input>
       <el-button type="primary" @click="addType">新 增</el-button>
     </div>
-    <el-table :data="tableData" style="width: 100%;">
+    <el-table :data="tableData" style="width: 100%">
       <el-table-column type="index" label="#"></el-table-column>
       <el-table-column prop="typeName" label="名称"> </el-table-column>
       <el-table-column prop="createdAt" label="创建时间"> </el-table-column>
@@ -44,7 +44,7 @@ export default {
       typeName: '',
     };
   },
-  created() {
+  mounted() {
     this.getTableList();
   },
   methods: {

@@ -70,13 +70,12 @@ export default {
   width: 100%;
   overflow: hidden;
   .back_img {
+    width: 100%;
     img {
       width: 100%;
       height: 400px;
       object-fit: cover;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
+      pointer-events: none;
     }
   }
   .back_title {

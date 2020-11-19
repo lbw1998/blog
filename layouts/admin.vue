@@ -7,9 +7,7 @@
           mode="horizontal"
           @select="handleSelect"
         >
-          <el-menu-item index="/">
-            主站
-          </el-menu-item>
+          <el-menu-item index="/"> 主站 </el-menu-item>
 
           <el-menu-item index="/admin">写文章</el-menu-item>
           <!-- <el-submenu index="2">
@@ -26,9 +24,7 @@
           </el-submenu> -->
           <el-menu-item index="/admin/article">文章列表</el-menu-item>
           <el-menu-item index="/admin/type">分类列表</el-menu-item>
-          <div class="exit" @click="logout()">
-            退出
-          </div>
+          <div class="exit" @click="logout()">退出</div>
         </el-menu>
       </el-header>
       <el-main> <Nuxt /> </el-main>
