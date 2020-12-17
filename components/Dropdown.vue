@@ -26,9 +26,7 @@ export default {
   },
   methods: {
     show() {
-      setTimeout(() => {
-        this.flag = true;
-      }, 200);
+      this.flag = true;
     },
   },
 };
@@ -75,7 +73,7 @@ export default {
     li {
       clear: both;
       margin: -5px -12px;
-      padding: 5px 12px;
+      padding: 8px 15px;
       color: rgba(0, 0, 0, 0.65);
       font-weight: 400;
       font-size: 14px;

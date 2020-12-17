@@ -61,11 +61,7 @@
         </div>
       </div>
       <!-- eslint-disable-next-line vue/attribute-hyphenation -->
-      <Comment
-        :img-url="info.imgUrl"
-        :article-id="articleId"
-        :count="info.count"
-      ></Comment>
+      <Comment :article-id="articleId" :count="info.count"></Comment>
     </div>
   </div>
 </template>

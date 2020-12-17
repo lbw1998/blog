@@ -3,7 +3,11 @@
     <div class="logo">{{ title }}</div>
     <div class="menu">
       <ul>
-        <li v-for="(item, index) in menuList" :key="index">
+        <li
+          v-for="(item, index) in menuList"
+          :key="index"
+          @click="jumpTo(item.url)"
+        >
           <span class="menu-item">
             <i :class="`iconfont ${item.icon}`"></i>
             {{ item.label }}
@@ -25,7 +29,7 @@
           style="font-size: 26px"
           @click="isShow = !isShow"
         ></i>
-        <i class="iconfont icon-user" style="font-size: 26px"></i>
+        <!-- <i class="iconfont icon-user" style="font-size: 26px"></i> -->
       </div>
     </div>
     <div :class="{ is_visible: isShow }" class="search-wrap">
@@ -61,10 +65,12 @@ export default {
         {
           icon: 'icon-fort-awesome',
           label: '首页',
+          url: '/',
         },
         {
           icon: 'icon-archive',
-          label: '时间轴',
+          label: '留言板',
+          url: '/message',
         },
       ],
     };
@@ -82,7 +88,7 @@ export default {
         document.body.scrollTop;
       this.scrollTop = scrollTop;
     },
-    jumpTo(name, id) {
+    jumpTo(name, id = '') {
       this.$router.push(name + id);
       this.isShow = false;
     },
@@ -120,6 +126,7 @@ export default {
     ul {
       display: inline-block;
       vertical-align: super;
+      margin-right: 20px;
       li {
         display: inline-block;
         padding: 0 15px;

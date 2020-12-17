@@ -107,7 +107,7 @@ export default {
   .banner-wrap {
     .banner {
       width: 100%;
-      height: 937px;
+      height: 100vh;
       background-image: url('../assets/img/banner.png ');
       background-size: cover;
       background-repeat: no-repeat;

@@ -4,44 +4,112 @@
       <div class="content-wrap">
         <div class="contents">
           <div class="profile">
-            <img :src="imgUrl" class="avatar" />
+            <img :src="userinfo.avatar" class="avatar" />
           </div>
         </div>
         <div class="commentinfo">
           <section class="commeta">
             <div class="left">
-              <h4 class="author">aLiEz</h4>
+              <h4 class="author">{{ userinfo.nickname }}</h4>
             </div>
             <div class="right">
               <div class="info">
-                <span class="time"> 发布于 4 天前 </span>
-                <span class="referrer">（来自: 北京市 移动）</span>
+                <span class="time"> 发布于 {{ parseTime(time) }} </span>
+                <span class="referrer">（来自: {{ userinfo.address }}）</span>
+                <span class="reply" @click="showComponent">REPLY</span>
               </div>
             </div>
           </section>
         </div>
         <div class="body">
           <p>
-            <span class="comment-at">@aLIEz</span>
+            <span v-if="toNickname" class="comment-at">@{{ toNickname }}</span>
             {{ content }}
           </p>
         </div>
       </div>
+      <hr />
+      <template v-if="show">
+        <div class="cancel-reply" @click="cancelReply">Cancel Reply</div>
+        <!--  eslint-disable vue/attribute-hyphenation  -->
+        <CommentInput
+          :form="form"
+          :cid="cid"
+          :toId="userinfo._id"
+        ></CommentInput>
+      </template>
       <slot></slot>
     </li>
   </ul>
 </template>
 
 <script>
+import Vue from 'vue'; // 定义一个空的Vue实例
+import { parseTime } from '@/utils/tool';
+const Event = new Vue();
+
 export default {
   props: {
-    imgUrl: {
-      type: String,
-      default: '',
-    },
     content: {
       type: String,
       default: '',
+    },
+    form: {
+      type: Object,
+      default: () => {},
+    },
+    userinfo: {
+      type: Object,
+      default: () => {},
+    },
+    // 评论ID
+    cid: {
+      type: String,
+      default: '',
+    },
+    // 回复对象的昵称 @xxx
+    toNickname: {
+      type: String,
+      default: '',
+    },
+    time: {
+      type: String,
+      default: '',
+    },
+  },
+  data() {
+    return {
+      show: false,
+    };
+  },
+  mounted() {
+    const self = this;
+    Event.$on('input-closeAll', self.hideSelect); // 监听到某个组件要求关闭的事件,事件名称自定义
+  },
+  methods: {
+    hideSelect() {
+      const self = this;
+      self.show = false;
+      this.$emit('changeShow', false);
+    },
+    parseTime(time, pattern) {
+      return parseTime(time, pattern);
+    },
+    showComponent() {
+      const self = this;
+      const showStore = self.show;
+      Event.$emit('input-closeAll'); // 通知其他各组件关闭
+      if (showStore) {
+        // 之前是已经打开的
+        self.show = false;
+      } else {
+        self.show = true;
+      }
+    },
+    // 关闭回复框
+    cancelReply() {
+      this.show = false;
+      this.$emit('changeShow', true);
     },
   },
 };
@@ -49,7 +117,7 @@ export default {
 
 <style lang="scss" scoped>
 .comment-wrap {
-  margin: 0 auto 30px;
+  margin: 0 auto;
   width: 100%;
   .comment {
     margin: 0;
@@ -63,6 +131,10 @@ export default {
       padding: 0;
       &:hover img.avatar {
         transform: rotate(360deg);
+      }
+      &:hover .commentinfo .reply {
+        opacity: 1 !important;
+        cursor: pointer;
       }
       .contents {
         width: 100%;
@@ -111,6 +183,19 @@ export default {
               line-height: 20px;
               text-transform: none;
               color: rgba(0, 0, 0, 0.35);
+              .reply {
+                font-size: 12px;
+                display: block;
+                margin-left: 10px;
+                float: right;
+                text-transform: uppercase;
+                color: #fff;
+                background-color: #e2684a;
+                line-height: 20px;
+                padding: 0 6px;
+                border-radius: 3px;
+                opacity: 0;
+              }
             }
           }
         }
@@ -133,9 +218,21 @@ export default {
         }
       }
     }
+    .cancel-reply {
+      background: #f4f6f8;
+      border-radius: 3px;
+      padding: 12px 25px;
+      margin: 17.5px 0;
+      width: 80px;
+      font-size: 12px;
+      color: #454545;
+      font-weight: bold;
+      cursor: pointer;
+    }
   }
   .comment-wrap {
     padding-left: 40px;
+    box-sizing: border-box;
   }
   hr {
     height: 0;

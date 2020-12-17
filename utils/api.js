@@ -26,9 +26,14 @@ const COMMENT_API = {
   create: (params) => $http('POST', '/comment/create', 1, params),
 };
 
+const MESSAGE_API = {
+  getMessage: (params) => $http('GET', '/message/index', 1, params),
+  create: (params) => $http('POST', '/message/create', 1, params),
+};
+
 const ARTICLE_API = {
   // 无需token
-  getArticles: (params) => $http('GET', '/article/list', 0, params),
+  getArticles: (params) => $http('GET', '/article/list', 1, params),
   recentRecord: (params) => $http('GET', '/article/recentRecord', 1, params),
   // 需token
   addArticle: (params) => $http('POST', '/articles', 0, params),
@@ -38,4 +43,4 @@ const ARTICLE_API = {
   updateArticle: (params) => $http('PUT', '/articles/' + params.id, 0, params),
 };
 
-export { USER_API, TYPE_API, FILE_API, ARTICLE_API, COMMENT_API };
+export { USER_API, TYPE_API, FILE_API, ARTICLE_API, COMMENT_API, MESSAGE_API };

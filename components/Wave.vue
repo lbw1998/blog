@@ -28,9 +28,13 @@
     .waveTop {
       height: 100%;
       background: url('../static/img/wave1.png');
-      background-size: cover;
+      width: 200%;
+      background-size: 50% 120px;
       z-index: 15;
       opacity: 0.5;
+      background-repeat: repeat-x;
+      transform-origin: center bottom;
+      animation: 8s linear 0s infinite normal none running move_wave;
     }
     .waveMiddle {
       height: 100%;
